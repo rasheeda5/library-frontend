@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect, useMemo } from "react";
+import Table from "./Table";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const columns = useMemo(() => [
+    {
+      Header: "Books",
+      columns: [
+        {
+          Header: "Name",
+          accessor: book.title,
+        },
+        {
+          Header: "Year of Publishing",
+          accessor: book.publishYear,
+        },
+        {
+          Header: "Cover Price",
+          accessor: book.coverPrice,
+        },
+        {
+          Header: "ISBN",
+          accessor: book.ISBN,
+        },
+        {
+          Header: "Status",
+          accessor: book.status,
+        },
+      ],
+    },
+  ]);
+
+  getTableData = () => {};
+  return useEffect(() => {});
 }
 
 export default App;

@@ -6,6 +6,7 @@ import Buttons from "./Buttons";
 const Table = () => {
   const [books, setBooks] = useState([]);
   const [selectedId, setSelectedId] = useState("");
+  const [status, setStatus] = useState(false);
   const getData = async () => {
     let url = "http://localhost:8080/books";
 
@@ -43,9 +44,14 @@ const Table = () => {
               <input
                 type="radio"
                 name="bookSelected"
-                onSelect={() => {
+                onChange={() => {
                   setSelectedId(bks._id);
-                  console.log(selectedId);
+                  if (bks.status === "in") {
+                    setStatus(true);
+                  } else if (bks.status === "out") {
+                    setStatus(false);
+                  }
+                  // console.log(selectedId);
                 }}
               />
             </td>
@@ -69,7 +75,7 @@ const Table = () => {
         <tbody>{renderBody()}</tbody>
       </ReactBootStrap.Table>
 
-      <Buttons />
+      <Buttons id={selectedId} status={status} />
     </div>
   );
 };

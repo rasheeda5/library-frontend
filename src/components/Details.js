@@ -1,12 +1,19 @@
-import * as ReactBootStrap from "react-bootstrap";
+// import * as ReactBootStrap from "react-bootstrap";
 // import { useState } from "react";
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-const Details = () => {
+const Details = ({ detailsButtonClicked, id }) => {
   return (
     <div>
-      <p>deets</p>
+      <button
+        onClick={() => {
+          detailsButtonClicked(id);
+        }}
+      >
+        deets
+      </button>
     </div>
   );
 };
 export default Details;
+//ok bye

@@ -8,8 +8,7 @@ const Table = () => {
   const [selectedId, setSelectedId] = useState("");
   const [status, setStatus] = useState(false);
   const getData = async () => {
-    let url = "http://localhost:8080/books";
-
+    let url = "http://localhost:8080/api/books/getall";
     const response = await axios.get(url);
     console.log("response", response);
     setBooks(response.data);

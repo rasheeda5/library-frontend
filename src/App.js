@@ -1,11 +1,11 @@
 // import { useState, useEffect, useMemo } from "react";
-import Table from "./components/Table";
+import Home from "./components/Home";
 import "./App.css";
 
 const App = () => {
   return (
     <div className="App">
-      <Table />
+      <Home />
     </div>
   );
 };

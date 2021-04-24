@@ -3,6 +3,9 @@ import { useState } from "react";
 import CheckIn from "./CheckIn";
 import CheckOut from "./CheckOut";
 import Details from "./Details";
+import Home from "./Home";
+import axios from "axios";
+import { getFromStorage, setInStorage } from "../utils/storage";
 
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -21,6 +24,25 @@ const Buttons = ({ id, status }) => {
 
   const detailsButtonClicked = (id) => {
     setShowDetails(!showDetails);
+  };
+
+  const logoutButtonClicked = async () => {
+    try {
+      const obj = getFromStorage("lib");
+      if (obj && obj.token) {
+        const { token } = obj;
+        console.log(token);
+        let url = "http://localhost:8080/api/accounts/logout?token=" + token;
+        //   console.log("help");
+        const response = await axios.get(url);
+        if (response.data.success) {
+          setInStorage("lib", { token: null });
+        } else {
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -63,7 +85,16 @@ const Buttons = ({ id, status }) => {
         </ReactBootStrap.Button>
       ) : (
         <Details detailsButtonClicked={detailsButtonClicked} id={id} />
-      )}
+      )}{" "}
+      <ReactBootStrap.Button
+        variant="dark"
+        disabled={status}
+        onClick={() => {
+          logoutButtonClicked();
+        }}
+      >
+        Logout
+      </ReactBootStrap.Button>
     </div>
   );
 };

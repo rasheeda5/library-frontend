@@ -18,9 +18,9 @@ const SignIn = () => {
       console.log("response", response);
       if (response.data.success) {
         setInStorage("lib", { token: response.data.token });
-        alert("logged in");
+        window.location = "/";
       } else {
-        alert("error");
+        console.log("err");
       }
     } catch (err) {
       console.error(err);

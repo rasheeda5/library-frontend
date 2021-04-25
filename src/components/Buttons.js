@@ -37,6 +37,7 @@ const Buttons = ({ id, status }) => {
         const response = await axios.get(url);
         if (response.data.success) {
           setInStorage("lib", { token: null });
+          window.location = "/";
         } else {
         }
       }
@@ -63,7 +64,7 @@ const Buttons = ({ id, status }) => {
       {showCheckOut ? (
         <ReactBootStrap.Button
           variant="dark"
-          disabled={status}
+          disabled={!status}
           onClick={() => {
             checkOutButtonClicked(id);
           }}
@@ -76,7 +77,6 @@ const Buttons = ({ id, status }) => {
       {showDetails ? (
         <ReactBootStrap.Button
           variant="dark"
-          disabled={status}
           onClick={() => {
             detailsButtonClicked(id);
           }}
@@ -88,7 +88,6 @@ const Buttons = ({ id, status }) => {
       )}{" "}
       <ReactBootStrap.Button
         variant="dark"
-        disabled={status}
         onClick={() => {
           logoutButtonClicked();
         }}

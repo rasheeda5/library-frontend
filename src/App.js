@@ -1,12 +1,15 @@
 // import { useState, useEffect, useMemo } from "react";
 import Home from "./components/Home";
 import "./App.css";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <Router>
+      <div>
+        <Route path="/" exact component={Home} />
+      </div>
+    </Router>
   );
 };
 
